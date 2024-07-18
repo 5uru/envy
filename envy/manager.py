@@ -97,7 +97,8 @@ def activate_env(env_name: str):
             command, shell=True
         )  # Use shell=True for Windows to handle batch files
     else:
-        subprocess.run([shell, "-c", command])  # Execute command in the specified shell
+        # Execute command in the specified shell
+        subprocess.run([shell, "-c", command])
 
 
 def run_in_env(env_name: str, commands: list):
