@@ -44,8 +44,7 @@ def find_pythons():
                     )
                     # If successfully obtained the version, add it to the list
                     if version.returncode == 0:
-                        python_versions.append(
-                            (python_path, version.stdout.strip()))
+                        python_versions.append((python_path, version.stdout.strip()))
                 except Exception:
                     continue
 
