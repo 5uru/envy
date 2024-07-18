@@ -13,5 +13,8 @@
     "requests",
     "streamlit"
   ],
-  "test": ["pytorch", " fr"]
+  "test": [
+    "pytorch",
+    " fr"
+  ]
 }
