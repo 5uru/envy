@@ -20,7 +20,7 @@ with open("envy/model_collections.json", "r") as file:
 def create_env(env_name: str):
     """
 
-    :param env_name: str: 
+    :param env_name: str:
 
     """
     env_path = os.path.join(ENV_DIR, env_name)
@@ -75,7 +75,7 @@ def create_env(env_name: str):
 def activate_env(env_name: str):
     """
 
-    :param env_name: str: 
+    :param env_name: str:
 
     """
     # Construct the path to the virtual environment directory
@@ -113,8 +113,8 @@ def activate_env(env_name: str):
 def run_in_env(env_name: str, commands: list):
     """
 
-    :param env_name: str: 
-    :param commands: list: 
+    :param env_name: str:
+    :param commands: list:
 
     """
     # Determine the path of the specified virtual environment
@@ -152,7 +152,7 @@ def run_in_env(env_name: str, commands: list):
 def install_package(package: str):
     """
 
-    :param package: str: 
+    :param package: str:
 
     """
     # This function installs a Python package using uv and pip within the current environment
@@ -203,7 +203,7 @@ def new_models():
 def delete_env(env_name: str):
     """
 
-    :param env_name: str: 
+    :param env_name: str:
 
     """
     # Construct the path to the virtual environment directory
