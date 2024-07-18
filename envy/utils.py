@@ -1,6 +1,6 @@
 import contextlib
-import subprocess
 import os
+import subprocess
 
 
 def find_pythons():

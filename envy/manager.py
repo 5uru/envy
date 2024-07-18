@@ -6,9 +6,8 @@ import sys
 
 import InquirerPy
 import typer
-from rich import print
-
 import utils
+from rich import print
 
 app = typer.Typer()
 ENV_DIR = os.path.join(os.path.dirname(__file__), "envs")
