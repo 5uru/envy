@@ -18,6 +18,11 @@ with open("envy/model_collections.json", "r") as file:
 
 @app.command("create")
 def create_env(env_name: str):
+    """
+
+    :param env_name: str: 
+
+    """
     env_path = os.path.join(ENV_DIR, env_name)
     if os.path.exists(env_path):
         print(f"Environment {env_name} already exists.")
@@ -68,6 +73,11 @@ def create_env(env_name: str):
 
 @app.command("activate")
 def activate_env(env_name: str):
+    """
+
+    :param env_name: str: 
+
+    """
     # Construct the path to the virtual environment directory
     env_path = os.path.join(ENV_DIR, env_name)
 
@@ -101,6 +111,12 @@ def activate_env(env_name: str):
 
 
 def run_in_env(env_name: str, commands: list):
+    """
+
+    :param env_name: str: 
+    :param commands: list: 
+
+    """
     # Determine the path of the specified virtual environment
     env_path = os.path.join(ENV_DIR, env_name)
 
@@ -134,12 +150,18 @@ def run_in_env(env_name: str, commands: list):
 
 @app.command("install")
 def install_package(package: str):
+    """
+
+    :param package: str: 
+
+    """
     # This function installs a Python package using uv and pip within the current environment
     subprocess.run(["uv", "pip", "install", package])
 
 
 @app.command("list")
 def list_env_and_models():
+    """ """
     # Check if the ENV_DIR exists, if not, notify that no environments are found
     if not os.path.exists(ENV_DIR):
         print("No environments found.")
@@ -164,6 +186,7 @@ def list_env_and_models():
 
 @app.command("new")
 def new_models():
+    """ """
     # Prompt the user for the model name
     model_name = typer.prompt("What's the model name?")
     # Prompt the user for a comma-separated list of packages
@@ -178,6 +201,11 @@ def new_models():
 
 @app.command("delete")
 def delete_env(env_name: str):
+    """
+
+    :param env_name: str: 
+
+    """
     # Construct the path to the virtual environment directory
     env_path = os.path.join(ENV_DIR, env_name)
     # Check if the environment exists

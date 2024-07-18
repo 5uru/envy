@@ -4,9 +4,10 @@ import subprocess
 
 
 def find_pythons():
-    """
-    Searches for Python executables in the system's PATH and returns a dictionary
+    """Searches for Python executables in the system's PATH and returns a dictionary
     mapping each Python version to its executable path.
+
+
     """
     # Initialize a list to store paths of Python executables found
     python_versions = []
