@@ -76,7 +76,7 @@ python envy.py delete <env_name>
 ## File Structure
 
 ```
-envy/ 
+envy/
 envy.py                # Main script
 envs/                  # Directory for virtual environments
   model_collections.json  # JSON file with predefined models
