@@ -26,25 +26,26 @@ def find_pythons():
     ]
 
     # Split the system PATH based on the operating system
-    paths = (os.environ["PATH"].split(";")
-             if os.name == "nt" else os.environ["PATH"].split(":"))
+    paths = (
+        os.environ["PATH"].split(";")
+        if os.name == "nt"
+        else os.environ["PATH"].split(":")
+    )
 
     # Check each directory in the PATH for Python executables
     for path in paths:
         for python_exe in common_paths:
             python_path = os.path.join(path, python_exe)
             # Ensure the path is unique and the executable exists
-            if os.path.exists(
-                    python_path) and python_path not in python_versions:
+            if os.path.exists(python_path) and python_path not in python_versions:
                 try:
                     # Attempt to get the version of the Python executable
-                    version = subprocess.run([python_path, "--version"],
-                                             capture_output=True,
-                                             text=True)
+                    version = subprocess.run(
+                        [python_path, "--version"], capture_output=True, text=True
+                    )
                     # If successfully obtained the version, add it to the list
                     if version.returncode == 0:
-                        python_versions.append(
-                            (python_path, version.stdout.strip()))
+                        python_versions.append((python_path, version.stdout.strip()))
                 except Exception:
                     continue
 

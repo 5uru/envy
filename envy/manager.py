@@ -38,11 +38,13 @@ def create_env(env_name: str):
     python_executable = python_versions_dict[python_version]
 
     model_name = None
-    installed_models = InquirerPy.prompt({
-        "type": "list",
-        "message": "Do you want to install models?",
-        "choices": ["Yes", "No"],
-    })[0]
+    installed_models = InquirerPy.prompt(
+        {
+            "type": "list",
+            "message": "Do you want to install models?",
+            "choices": ["Yes", "No"],
+        }
+    )[0]
 
     if installed_models == "Yes":
         model_question = {
@@ -91,7 +93,8 @@ def activate_env(env_name: str):
     else:  # Assume OS is either macOS or Linux
         activate_script = os.path.join(env_path, "bin", "activate")
         shell = os.environ.get(
-            "SHELL", "/bin/bash")  # Get the default shell or use bash
+            "SHELL", "/bin/bash"
+        )  # Get the default shell or use bash
         if "zsh" in shell:  # Check if the default shell is zsh
             command = f"source {activate_script} && exec zsh"
         else:  # Default to bash if not zsh
@@ -100,8 +103,8 @@ def activate_env(env_name: str):
     # Execute the command to activate the environment in a new shell
     if os.name == "nt":
         subprocess.run(
-            command,
-            shell=True)  # Use shell=True for Windows to handle batch files
+            command, shell=True
+        )  # Use shell=True for Windows to handle batch files
     else:
         # Execute command in the specified shell
         subprocess.run([shell, "-c", command])
@@ -123,9 +126,11 @@ def run_in_env(env_name: str, commands: list):
         return
 
     # Choose the correct activation script based on the operating system
-    activate_script = (os.path.join(env_path, "Scripts", "activate.bat")
-                       if os.name == "nt" else os.path.join(
-                           env_path, "bin", "activate"))
+    activate_script = (
+        os.path.join(env_path, "Scripts", "activate.bat")
+        if os.name == "nt"
+        else os.path.join(env_path, "bin", "activate")
+    )
 
     # Construct the command string to activate the environment and execute additional commands
     if os.name == "nt":
@@ -163,8 +168,9 @@ def list_env_and_models():
         return
 
     if envs := [
-            name for name in os.listdir(ENV_DIR)
-            if os.path.isdir(os.path.join(ENV_DIR, name))
+        name
+        for name in os.listdir(ENV_DIR)
+        if os.path.isdir(os.path.join(ENV_DIR, name))
     ]:
         print("Environments:")
         for env in envs:
@@ -207,8 +213,7 @@ def delete_env(env_name: str):
         print(f"Environment {env_name} does not exist.")
         return
     # Prompt for confirmation before deleting the environment
-    if typer.confirm(f"Are you sure you want to delete {env_name}?",
-                     abort=True):
+    if typer.confirm(f"Are you sure you want to delete {env_name}?", abort=True):
         # Remove the directory and all its contents
         shutil.rmtree(env_path)
         print(f"Environment {env_name} deleted.")
